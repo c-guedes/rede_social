@@ -1,0 +1,18 @@
+
+{% extends 'registration/base.html' %}
+
+{% block title %} Página de Login {% endblock %}
+
+<div style="margin: 10% auto; text-align:center;">
+        <h1>Loginzera do controle
+        </h1>
+
+{% block main %}
+<h1>Logar no bloguin</h1>
+    <form class="md4" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <button type="submit" class="btn btn-dark">Login</button>
+    </form>
+        <br>
+{% endblock %}

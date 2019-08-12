@@ -1,0 +1,81 @@
+<html>
+<head>
+	<link href="https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<style>
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+ul.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: 29px;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
+}
+ul.timeline > li {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+ul.timeline > li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #22c0e8;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    z-index: 400;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header clearfix  col-md-6 offset-md-3">
+      <nav>
+        <ul class="nav nav-pills float-right">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'novapub' %}">Publicar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'seguir' %}">Seguir</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+          </li>
+        </ul>
+      </nav>
+      {% if user.is_authenticated %} 
+      <h3 class="text-muted">Olá {{ user.username }}!</h3>
+      {% else %}
+      <h3 class="text-muted" > Olá visitante!</h3>
+      {% endif %}
+    </div>
+    <div class="container mt-5 mb-5">
+    	<div class="row">
+    		<div class="col-md-6 offset-md-3">
+    			<ul class="timeline">
+          
+          {% for pub in pubs %}
+          
+    				<li>
+    					<a href="#">@{{ pub.autor }}</a>
+    					<a class="float-right">{{ pub.data }}</a>
+    					<p>{{ pub.pub_text }}</p>
+    				</li>
+          {% endfor %}
+    			</ul>
+    		</div>
+    	</div>
+    </div>
+    <footer class="footer col-md-6 offset-md-3">
+      <p>&copy; FC Solutions 2019</p>
+    </footer>
+<div>
+</body>
+</html>
